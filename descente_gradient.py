@@ -1,7 +1,7 @@
 import numpy as np
 from calcule_cout import *
 
-def descente_gradient(X, Y, theta, alpha, nb_iters):
+def descente_gradient(X, R, theta, alpha, nb_iters,nb_mod):
     """ Apprentissage des parametres de regression linéaire par descente du gradient
     
     Parametres
@@ -28,9 +28,9 @@ def descente_gradient(X, Y, theta, alpha, nb_iters):
     J_history = np.zeros(nb_iters)
     
     for i in range(0, nb_iters):
-        M = (sigmoide(X,theta)-Y)*X
-        theta = theta - (alpha/N)*(M.sum(0))
-        J_history[i]=calcule_cout(X,Y,theta)
+        M = ((sigmoide(X,theta,nb_mod)-R).T).dot(X)
+        theta -= (alpha/N)*M
+        J_history[i]=calcule_cout(X,R,theta,nb_mod)
 
 
     return theta, J_history

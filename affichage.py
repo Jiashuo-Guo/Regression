@@ -21,10 +21,10 @@ def affichage(X, Y):
     """
     N = X.shape[0]
     plt.figure()
+    apparance = ['bx','ro','g,','y<','kp']
     for i in range(N):
-        if Y[i]==0:
-            plt.plot(X[i,1],X[i,2],'x')
-        else:
-            plt.plot(X[i,1],X[i,2],'o')
+        for j in range(int(Y.max())+1):
+            if Y[i] == j:
+                plt.plot(X[i,1],X[i,2],apparance[j])
     plt.show()
     

@@ -2,7 +2,7 @@ import numpy as np
 from sigmoide import *
 
 
-def prediction(X,theta):
+def prediction(X,theta,nb_mod):
     """ Predit la classe de chaque élement de X
     
     Parametres
@@ -21,11 +21,12 @@ def prediction(X,theta):
 
     N = X.shape[0]
     p = np.zeros((N,1))
+    a = sigmoide(X,theta,nb_mod)
+    am = a.max(1)
     for i in range(N):
-        if sigmoide(X,theta)[i]>0.5:
-            p[i] = 1
-        else:
-            p[i] = 0
+        for j in range(nb_mod):
+            if a[i,j] == am[i]:
+                p[i] = j
 
     return p
 

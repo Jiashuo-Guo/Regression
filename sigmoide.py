@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def sigmoide(z,theta):
+def sigmoide(z,theta,k):
     """ Calcule la valeur de la fonction sigmoide appliquée à z
     
     Parametres
@@ -15,6 +15,6 @@ def sigmoide(z,theta):
     """
     a = np.exp(-z.dot(theta.T))
     N = a.shape[0]
-    s = np.ones((N,1))/(np.ones((N,1))+a)
+    s = np.ones((N,k))/(np.ones((N,k))+a)
 
     return s

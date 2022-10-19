@@ -21,5 +21,11 @@ def lecture_donnees(nom_fichier, delimiteur=','):
     N = data.shape[0]
     X = data[:,:-1]
     Y = data[:,-1].reshape(N,1)
-
-    return X, Y, N, nb_var
+    Y = Y-Y.min(0)
+    R = np.zeros((N,int(Y.max())+1))
+    for i in range(N):
+        for j in range(int(Y.max())+1):
+            if Y[i] == j:
+                R[i,j] = 1
+    nb_mod = int(Y.max())+1
+    return X, Y, N, nb_var, R,nb_mod

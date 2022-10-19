@@ -2,7 +2,7 @@ import numpy as np
 from sigmoide import *
 
 
-def calcule_cout(X, Y, theta):
+def calcule_cout(X, R, theta,nb_mod):
     """ Calcule la valeur de la fonction cout (moyenne des différences au carré)
     
     Parametres
@@ -19,6 +19,6 @@ def calcule_cout(X, Y, theta):
 
     """
     N = X.shape[0]
-    cout = -(Y*np.log(sigmoide(X,theta))+(np.ones((N,1))-Y)*np.log(np.ones((N,1))-sigmoide(X,theta))).sum(0)
-
+    a = R.dot((np.log(sigmoide(X,theta,nb_mod))).T)+(np.ones((N,nb_mod))-R).dot((np.log(np.ones((N,nb_mod))-sigmoide(X,theta,nb_mod)).T))
+    cout = -np.trace(a)
     return cout
