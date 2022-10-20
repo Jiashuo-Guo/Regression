@@ -44,7 +44,7 @@ def affichage(X, Y):
     X = acp(X)
     N = X.shape[0]
     plt.figure()
-    apparance = ['bx','ro','g,','y<','kp']
+    apparance = ['bx','ro','y<','kp']
     for i in range(N):
         for j in range(int(Y.max())+1):
             if Y[i] == j:
