@@ -16,7 +16,10 @@ def lecture_donnees(nom_fichier, delimiteur=','):
     avec N : nombre d'éléments et nb_var : nombre de variables prédictives
 
     """
-    data = np.loadtxt(nom_fichier,delimiter=delimiteur)
+    # data = np.loadtxt(nom_fichier,delimiter=delimiteur)
+    data = np.random.randint(1,100,size = (50,10))
+    l = np.random.randint(1,5,size = (50,1))
+    data = np.hstack((data,l))
     nb_var = data.shape[1]-1
     N = data.shape[0]
     X = data[:,:-1]

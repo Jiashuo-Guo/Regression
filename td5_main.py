@@ -27,8 +27,8 @@ X, mu, sigma = normalisation(X)
 X = np.hstack((np.ones((N,1)), X)) 
 
 # Affichage des points en 2D et représentation de leur classe réelle par une couleur
-if nb_var == 2 :
-    affichage(X,Y)
+# if nb_var == 2 :
+affichage(X,Y)
 
 # ===================== Partie 2: Descente du gradient =====================
 print("Apprentissage par descente du gradient ...")
@@ -58,9 +58,9 @@ print(Ypred)
 # print("Taux de classification : ", taux_classification(Ypred,Y))
 
 # Affichage des points en 2D et représentation de leur classe prédite par une couleur
-if nb_var == 2 :
+# if nb_var == 2 :
 
-    affichage(X,Ypred)
+affichage(X,Ypred)
 plt.show()
 
 print("Regression logistique Terminée.")
