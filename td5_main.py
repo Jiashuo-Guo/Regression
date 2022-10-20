@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+
 from lecture_donnees import *
 from normalisation import *
 from descente_gradient import *
@@ -9,11 +10,12 @@ from taux_classification import *
 from decoupage_donnees import *
 
 
+
 # ===================== Partie 1: Lecture et normalisation des données=====================
 
 print("Lecture des données ...")
 
-X, Y, N, nb_var, R, nb_mod = lecture_donnees("donnees.txt")
+X, Y, N, nb_var, R, nb_mod = lecture_donnees("wine.txt")
 # Affichage des 10 premiers exemples du dataset
 print("Affichage des 10 premiers exemples du dataset : ")
 for i in range(0, 10):
@@ -71,8 +73,13 @@ plt.show()
 print("Regression logistique Terminée.")
 
 # ===================== Partie 3: Test =====================
-affichage(X_test,Y_app)
+affichage(X_test,Y_test)
 
 Ypred = prediction(X_test,theta,nb_mod)
 print(Ypred)
+
 affichage(X_test,Ypred)
+plt.show()
+
+accuracy = (Ypred == Y_test).astype(int).sum() / Ypred.shape[0]
+print("Resultat du test:", accuracy)

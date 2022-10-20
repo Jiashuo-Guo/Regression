@@ -17,6 +17,7 @@ def lecture_donnees(nom_fichier, delimiteur=','):
 
     """
     data = np.loadtxt(nom_fichier,delimiter=delimiteur)
+    np.random.shuffle(data)
     nb_var = data.shape[1]-1
     N = data.shape[0]
     X = data[:,:-1]
