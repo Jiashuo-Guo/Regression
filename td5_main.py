@@ -12,7 +12,7 @@ from taux_classification import *
 
 print("Lecture des données ...")
 
-X, Y, N, nb_var, R, nb_mod = lecture_donnees("new_houses.txt")
+X, Y, N, nb_var, R, nb_mod = lecture_donnees("donnees.txt")
 # Affichage des 10 premiers exemples du dataset
 print("Affichage des 10 premiers exemples du dataset : ")
 for i in range(0, 10):
