@@ -6,6 +6,7 @@ from descente_gradient import *
 from affichage import *
 from prediction import *
 from taux_classification import *
+from decoupage_donnees import *
 
 
 # ===================== Partie 1: Lecture et normalisation des données=====================
@@ -30,7 +31,11 @@ X = np.hstack((np.ones((N,1)), X))
 # if nb_var == 2 :
 affichage(X,Y)
 
+# Découpage des données en sous-ensemble d'apprentissage, de validation et de test
+X_app, Y_app, R_app, X_test,Y_test =  decoupage_donnees(X,Y,R)
+
 # ===================== Partie 2: Descente du gradient =====================
+affichage(X_app,Y_app)
 print("Apprentissage par descente du gradient ...")
 
 # Choix du taux d'apprentissage et du nombre d'itérations
@@ -40,8 +45,8 @@ nb_iters = 5000
 # Initialisation de theta et réalisation de la descente du gradient
 theta = np.zeros((nb_mod,nb_var+1))
 
-theta, J_history = descente_gradient(X, R, theta, alpha, nb_iters,nb_mod)
-print(theta,'sdfsfs')
+theta, J_history = descente_gradient(X_app, R_app, theta, alpha, nb_iters,nb_mod)
+
 # Affichage de l'évolution de la fonction de cout lors de la descente du gradient
 plt.figure(1)
 plt.title("Evolution de le fonction de cout lors de la descente du gradient")
@@ -51,16 +56,23 @@ plt.ylabel("Cout J")
 
 # Affichage de la valeur de theta
 print(f"Theta calculé par la descente du gradient : {theta}")
-print(sigmoide(X,theta,nb_mod))
+print(sigmoide(X_app,theta,nb_mod))
 # Evaluation du modèle
-Ypred = prediction(X,theta,nb_mod)
+Ypred = prediction(X_app,theta,nb_mod)
 print(Ypred)
 # print("Taux de classification : ", taux_classification(Ypred,Y))
 
 # Affichage des points en 2D et représentation de leur classe prédite par une couleur
 # if nb_var == 2 :
 
-affichage(X,Ypred)
+affichage(X_app,Ypred)
 plt.show()
 
 print("Regression logistique Terminée.")
+
+# ===================== Partie 3: Test =====================
+affichage(X_test,Y_app)
+
+Ypred = prediction(X_test,theta,nb_mod)
+print(Ypred)
+affichage(X_test,Ypred)
